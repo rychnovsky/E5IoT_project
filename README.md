@@ -1,4 +1,4 @@
-# E5IoT_project
+# E5IoT_project - Distance Button
 
 The goal of this project is to create a device connecting two users by sharing their location and the walking distance between them.
 
