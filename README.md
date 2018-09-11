@@ -4,10 +4,9 @@ The goal of this project is to create a device connecting two users by sharing t
 
 ## Project usecases
 
-1. There are two friends living in the same town who visit each other very often. The one who is leaving the house would like to inform tje other friend, that he is comming and how long it will take.
+1. There are two friends living in the same town who visit each other very often. The one who is leaving the house would like to inform the other friend, that he is comming and how long it will take.
 2. Children can easily inform their parents that they are leaving school and if they don't come home in expected time, parents know, that there is a problem.
 3. A couple living far away from each other can let each other know, how long it would take to walk to the partner's place.
-   If we use photon with cellular connection, we will be able to add continuous location sharing feature.
 
 ## Project description
 
@@ -25,5 +24,5 @@ There are two stations located on diferent places (ex. one at home, second at sc
 
 ## Idea pool
 
-- send a push notification to user's mobile phone, when someone is sharing location with him
+- send a push notification to user's mobile phone, when someone is sharing location with him, or display the location for example using Blynk app
 - continuous location sharing - another type of Photon is required
