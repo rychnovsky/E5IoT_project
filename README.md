@@ -25,5 +25,5 @@ There are two stations located on diferent places (ex. one at home, second at sc
 
 ## Idea pool
 
-- send a push notification to user mobile phone, when someone is sharing location with him
-- continuous location sharing
+- send a push notification to user's mobile phone, when someone is sharing location with him
+- continuous location sharing - another type of Photon is required
