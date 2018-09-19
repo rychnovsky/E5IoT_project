@@ -10,7 +10,7 @@ The goal of this project is to create a device connecting two users by sharing t
 
 ## Project description
 
-There are two stations located on diferent places (ex. one at home, second at school), each one consists of one Photon, one button, and a small display. When the button is pressed, the photon fetches its location from GoogleMap API and publishes this event into Particle cloud. The second photon is subscribed to this event and gets the location of the second photon. In the same time it fetches its own location also from GoogleMap API. These two locations are used to calculate a distance between these two places and time necessery to walk this distance. The receiving photon will display this walking time, which will be counting down to zero.
+There are two stations located on different places (ex. one at home, second at school), each one consists of one Photon, one button, and a small display. When the button is pressed, the photon fetches its location from GoogleMap API and publishes this event into Particle cloud. The second photon is subscribed to this event and gets the location of the second photon. In the same time it fetches its own location also from GoogleMap API. These two locations are used to calculate a distance between these two places and time necessary to walk this distance. The receiving photon will display this walking time, which will be counting down to zero.
 
 ## Hardware parts per one station
 
