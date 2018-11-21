@@ -1,6 +1,3 @@
-// This #include statement was automatically added by the Particle IDE.
-#include <google-maps-device-locator.h>
-
 #include <google-maps-device-locator.h>
 
 GoogleMapsDeviceLocator locator;
@@ -12,7 +9,7 @@ void setup() {
     Serial.begin(9600);
 
     Serial.println("Photon starting....");
-    
+
     // setup display pins
     pinMode(D0, OUTPUT);
     pinMode(D1, OUTPUT);
@@ -28,13 +25,13 @@ void setup() {
     pinMode(A3, OUTPUT);
     pinMode(A4, OUTPUT);
     pinMode(A5, OUTPUT);
-    
+
     // subscribe to location from remote photon
     Particle.subscribe("distance_button_location_share", onRemoteLocation);
 
     // subscribe to distance calculation
     Particle.subscribe("hook-response/calculate_distance", onCalculationResult, MY_DEVICES);
-    
+
 }
 
 void loop() {
@@ -47,11 +44,11 @@ void loop() {
  */
 void onRemoteLocation(const char *event, const char *data) {
     // save location of remote photon
-    
+
     // TODO get actual values from data
     remoteLat = 56.129282;
     remoteLon = 10.187276;
-    
+
     // get my location
     locator.withSubscribe(onLocationReceived).withLocateOnce();
 }
@@ -67,16 +64,16 @@ void onLocationReceived(float lat, float lon, float accuracy) {
     // - Latitude
     // - Longitude
     // - Accuracy of estimated location (in meters)
-    
+
     Serial.println("New location update received!");
     Serial.printlnf("Latitude: %f", lat);
     Serial.printlnf("Longitude: %f", lon);
     Serial.printlnf("Accuracy: %f", accuracy);
-    
+
     // calculate the distance
      String data = String::format(
         "{ \"ORIGIN\": \"%f, %f\", \"DESTINATION\": \"%f, %f\" }",
-        lat, lon, 
+        lat, lon,
         remoteLat, remoteLon
     );
     Particle.publish("calculate_distance", data, PRIVATE);
@@ -101,7 +98,7 @@ void onCalculationResult(const char *event, const char *data) {
     // show on display
     Serial.printlnf("Distance: %d", result );
     shownumber(result);
-    
+
     // publish acknowledgement
     Particle.publish("distance_button_result_ack");
 }
@@ -290,4 +287,3 @@ void secondDigit(int number) {
         break;
     }
 }
-
