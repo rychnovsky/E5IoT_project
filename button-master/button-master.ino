@@ -17,7 +17,7 @@ void setup() {
     // boot up sequence
     // indicate starting and that there are no errors in the display
     // should be changed in production mode to lower energy consumtion
-    for (size_t i = 0; i < 4; i++) {
+    for (size_t i = 0; i < 3; i++) {
         showError();
         delay(250);
         showNumber(88);
