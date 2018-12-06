@@ -1,4 +1,6 @@
+// This #include statement was automatically added by the Particle IDE.
 #include <google-maps-device-locator.h>
+
 
 GoogleMapsDeviceLocator locator;
 
@@ -25,6 +27,8 @@ void setup() {
     pinMode(A3, OUTPUT);
     pinMode(A4, OUTPUT);
     pinMode(A5, OUTPUT);
+    
+    resetDisplay();
 
     // subscribe to location from remote photon
     Particle.subscribe("distance_button_location_share", onRemoteLocation);
@@ -46,11 +50,33 @@ void onRemoteLocation(const char *event, const char *data) {
     // save location of remote photon
 
     // TODO get actual values from data
-    remoteLat = 56.129282;
-    remoteLon = 10.187276;
+    
+    
+    shownumber(0);
+    String location = String(data);
+    
+    int index = location.indexOf(',');
+        
+
+    remoteLat = location.substring(0, index).toFloat();
+    
+    remoteLon = location.substring(index+1, location.length()).toFloat();
+    
+
+    
+    String somestring = String::format(
+        "{ \"ORIGIN\": \"%f, %f\", \"DESTINATION\": \"%f, %f\" }",
+        56.129282, 10.187276,
+        remoteLat, remoteLon
+    );
+    Serial.println(somestring);
+    
+    Particle.publish("calculate_distance", somestring, PRIVATE, WITH_ACK);
+    Particle.publish("distance_button_result_ack", NULL, PUBLIC, WITH_ACK);
+
 
     // get my location
-    locator.withSubscribe(onLocationReceived).withLocateOnce();
+    //locator.withSubscribe(onLocationReceived).withLocateOnce();
 }
 
 /**
