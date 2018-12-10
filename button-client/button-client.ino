@@ -64,6 +64,11 @@ void onLocationReceived(float lat, float lon, float accuracy) {
     Serial.printlnf("Longitude: %f", lon);
     Serial.printlnf("Accuracy: %f", accuracy);
 
+    // TODO: Remove these lines in production mode
+    // change location to show different results than 0 mins
+    lat += 0.02;
+    lon += 0.03;
+
     // publish the location to the Master Photon
     String sharable =  String::format("%f, %f", lat, lon);
     Particle.publish("distance_button_location_share", sharable, PUBLIC, WITH_ACK);
