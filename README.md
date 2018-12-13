@@ -1,28 +1,24 @@
 # E5IoT_project - Distance Button
 
-The goal of this project is to create a device connecting two users by sharing their location and the walking distance between them.
+The goal of this project is to create an IoT device connecting two users by sharing their location and showing the walking time between them.
 
-## Project usecases
+![alt Distance Button](/final_product.jpg)
 
-1. There are two friends living in the same town who visit each other very often. The one who is leaving the house would like to inform the other friend, that he is comming and how long it will take.
-2. Children can easily inform their parents that they are leaving school and if they don't come home in expected time, parents know, that there is a problem.
-3. A couple living far away from each other can let each other know, how long it would take to walk to the partner's place.
+## Project Description
 
-## Project description
+The core part of our project is a pair of devices (stations) connected to the Internet. Each of the stations will belong to one of the users.
+These two stations are located on different places (for example one at home, second at school). One station is called client station and the other can be called master station. The client station contains one Photon, a LED and a simple button. The master station contains another Photon and a numeric display.
+When the button is pressed, the Client Photon fetches its location from Google Maps Geo-Location API and publishes this event into Particle Cloud. The Master Photon is subscribed to this event and receives this location. When this action is triggered, it fetches its own location also from Google Geo-Location API. These two locations are used to calculate a distance between these two places and time necessary to walk this distance. For the most accurate calculation of walking time the Google API is used again. This walking time will be displayed on the master station.
 
-There are two stations located on different places (ex. one at home, second at school), each one consists of one Photon, one button, and a small display. When the button is pressed, the photon fetches its location from GoogleMap API and publishes this event into Particle cloud. The second photon is subscribed to this event and gets the location of the second photon. In the same time it fetches its own location also from GoogleMap API. These two locations are used to calculate a distance between these two places and time necessary to walk this distance. The receiving photon will display this walking time, which will be counting down to zero.
-
-## Hardware parts per one station
+## Hardware parts
 
 - Particle Photon
 - Button
-- Display
+- Seven Segment Display
+- LEDs
 
 ## Services integration
 
-- Google map API
-
-## Idea pool
-
-- send a push notification to user's mobile phone, when someone is sharing location with him, or display the location for example using Blynk app
-- continuous location sharing - another type of Photon is required
+- Particle Cloud Events
+- Google Maps Geolocation API
+- Google Maps Distance Matrix API
