@@ -2,6 +2,8 @@
 
 GoogleMapsDeviceLocator locator;
 
+bool shouldSleep = true;
+
 int ledPin = D1;
 
 int internalLedPin = D7;
@@ -35,20 +37,22 @@ void setup() {
 
 void loop() {
 
-    // hanle button press
-    int buttonState = digitalRead( buttonPin );
+    bool wifiReady = WiFi.ready();
+    bool cloudReady = Particle.connected();
 
-    if ( buttonState == LOW )
-    {
-        Serial.println("Button pressed!");
-        Serial.println("Publishing location to the cloud");
-        digitalWrite( ledPin, HIGH);
-        delay(1500); // to prevent multiple presses
-        locator.publishLocation();
-    } else {
-        digitalWrite( ledPin, LOW);
+    if(shouldSleep) {
+      System.sleep(buttonPin,CHANGE,30);
+      WiFi.connect();
+      shouldSleep = false;
     }
-
+    if(wifiReady && cloudReady) {
+      Serial.println("Button pressed!");
+      Serial.println("Publishing location to the cloud");
+      digitalWrite( ledPin, HIGH);
+      delay(1500); // to prevent multiple presses
+      locator.publishLocation();
+      digitalWrite( ledPin, LOW);
+    }
 }
 
 /**
@@ -87,5 +91,5 @@ void onAckReceived(const char *event, const char *data) {
     digitalWrite(internalLedPin, HIGH);
     delay(2000);
     digitalWrite(internalLedPin, LOW);
-
+    shouldSleep = true;
 }
