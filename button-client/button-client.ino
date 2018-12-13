@@ -16,7 +16,7 @@ void setup() {
     Serial.println("Photon starting....");
 
      // set pins as input
-    pinMode( buttonPin , INPUT_PULLUP);
+    // pinMode( buttonPin , INPUT_PULLUP);
 
     // set pins as output
     pinMode(ledPin, OUTPUT );
@@ -40,8 +40,8 @@ void loop() {
     bool wifiReady = WiFi.ready();
     bool cloudReady = Particle.connected();
 
-    if(shouldSleep) {
-      System.sleep(buttonPin,CHANGE,30);
+    if(true) {
+      System.sleep(buttonPin, FALLING, 30);
       WiFi.connect();
       shouldSleep = false;
     }
@@ -52,6 +52,8 @@ void loop() {
       delay(1500); // to prevent multiple presses
       locator.publishLocation();
       digitalWrite( ledPin, LOW);
+      delay(1500); // to prevent multiple presses
+
     }
 }
 
