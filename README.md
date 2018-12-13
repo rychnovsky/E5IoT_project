@@ -2,6 +2,8 @@
 
 The goal of this project is to create an IoT device connecting two users by sharing their location and showing the walking time between them.
 
+[Documentation of teh project](distance-button.pdf)
+
 ![alt Distance Button](/final_product.jpg)
 
 ## Project Description
